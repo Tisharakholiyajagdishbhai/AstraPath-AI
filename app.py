@@ -1,12 +1,12 @@
-import streamlit as st
+ import streamlit as st
 import requests
 import PyPDF2
 import io
-from dotenv import load_dotenv
-import os
 
-load_dotenv()
-API_KEY = os.getenv("GROQ_API_KEY")
+st.set_page_config(page_title="AstraPath AI", page_icon="🚀")
+
+API_KEY = st.secrets["GROQ_API_KEY"]
+st.write("API Key Loaded:", API_KEY[:10])
 
 url = "https://api.groq.com/openai/v1/chat/completions"
 headers = {
@@ -36,11 +36,16 @@ def analyze_resume(resume_text):
         "messages": [{"role": "user", "content": prompt}]
     }
     response = requests.post(url, headers=headers, json=data)
+    st.write("Status code:", response.status_code)
+     
     result = response.json()
-    return result['choices'][0]['message']['content']
-
+    st.write(result)
+    if "choices" in result:
+        return result["choices"][0]["message"]["content"]
+    else:
+        return f"Error: {result}"
 # UI
-st.set_page_config(page_title="AstraPath AI", page_icon="🚀")
+
 st.title("🚀 AstraPath AI")
 st.subheader("AI Career Agent for Space & Research Aspirants")
 st.markdown("*Built for ISRO | DRDO | NASA dreamers*")
