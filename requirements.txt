@@ -1,7 +1,4 @@
 streamlit
+requests
 PyPDF2
 python-dotenv
-requests
-groq
-pandas
-numpy
