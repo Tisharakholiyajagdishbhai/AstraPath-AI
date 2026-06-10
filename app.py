@@ -6,7 +6,7 @@ import io
 st.set_page_config(page_title="AstraPath AI", page_icon="🚀")
 
 API_KEY = st.secrets["GROQ_API_KEY"]
-st.write("API Key Loaded:", API_KEY[:10])
+
 
 url = "https://api.groq.com/openai/v1/chat/completions"
 headers = {
@@ -36,14 +36,13 @@ def analyze_resume(resume_text):
         "messages": [{"role": "user", "content": prompt}]
     }
     response = requests.post(url, headers=headers, json=data)
-    st.write("Status code:", response.status_code)
+    
      
     result = response.json()
-    st.write(result)
-    if "choices" in result:
-        return result["choices"][0]["message"]["content"]
-    else:
-        return f"Error: {result}"
+    
+    
+    return result["choices"][0]["message"]["content"]
+    
 # UI
 
 st.title("🚀 AstraPath AI")
@@ -64,6 +63,6 @@ if uploaded_file:
     if st.button("🚀 Analyze My Career Path"):
         with st.spinner("AstraPath AI is analyzing your resume..."):
             analysis = analyze_resume(resume_text)
-        st.markdown("## Your Career Analysis")
+        st.markdown("## 📊 Your Career Analysis")
         st.markdown(analysis)
         st.balloons()
