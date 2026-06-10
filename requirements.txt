@@ -1,0 +1,6 @@
+streamlit
+PyPDF2
+requests
+groq
+pandas
+numpy
