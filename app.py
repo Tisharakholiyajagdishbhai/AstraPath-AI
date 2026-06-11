@@ -37,39 +37,83 @@ def create_pdf(text):
     return buffer
 
 # ---------------- AI ANALYSIS ----------------
-def analyze_resume(resume_text):
+ def analyze_resume(resume_text):
     prompt = f"""
-    You are AstraPath AI - a career agent for Space & Research aspirants (ISRO, DRDO, NASA).
+Analyze the following resume as an expert Career Advisor specializing in Space, Research, AI, Data Science, and Engineering careers.
 
-    Analyze this resume and provide:
+Provide your response in the following structured format:
 
-    1. ATS Score out of 100
-    2. Top 5 Skills Found
-    3. Skills Gap for ISRO/DRDO/Research roles
-    4. Strengths of Candidate
-    5. Weaknesses of Candidate
+1. ATS Score Analysis
+- ATS Score out of 100
+- Formatting & Structure: /20
+- Technical Skills: /20
+- Projects & Practical Experience: /20
+- Education & Achievements: /20
+- Keywords & Industry Relevance: /20
 
-    6. Career Roadmap:
-       - Next 3 Months
-       - Next 6 Months
-       - Next 12 Months
+2. Top 5 Skills Identified
 
-    7. Top 3 Job/Research roles suitable
-    8. Top 3 Internships/Opportunities to apply right now
-    9. Top 5 Courses with links
+3. Skill Gap Analysis for ISRO, DRDO, Research, AI, and Space Technology Roles
+- High Priority Skills
+- Medium Priority Skills
+- Low Priority Skills
 
-    Resume:
-    {resume_text}
-    """
+4. Candidate Strengths
+
+5. Areas for Improvement
+
+6. Personalized Career Roadmap
+- Next 3 Months
+- Next 6 Months
+- Next 12 Months
+
+7. Best Career Roles for This Candidate
+
+8. Internship & Opportunity Recommendations
+
+9. Recommended Courses
+Provide courses in Markdown format:
+[Course Name](Course Link)
+
+Include:
+- Platform
+- Difficulty Level
+- Duration
+- Why Recommended
+
+10. Project Recommendations
+Include:
+- Project Title
+- Difficulty
+- Technologies
+- Expected Outcome
+
+11. Final Recruiter Feedback
+- Overall Profile Rating (/10)
+- Interview Readiness (/10)
+- Research Readiness (/10)
+- Industry Readiness (/10)
+
+Resume:
+{resume_text}
+"""
 
     data = {
         "model": "llama-3.3-70b-versatile",
         "messages": [
-            {"role": "user", "content": prompt}
+            {
+                "role": "user",
+                "content": prompt
+            }
         ]
     }
 
-    response = requests.post(url, headers=headers, json=data)
+    response = requests.post(
+        url,
+        headers=headers,
+        json=data
+    )
+
     result = response.json()
 
     if response.status_code != 200:
