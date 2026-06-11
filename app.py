@@ -37,7 +37,7 @@ def create_pdf(text):
     return buffer
 
 # ---------------- AI ANALYSIS ----------------
- def analyze_resume(resume_text):
+def analyze_resume(resume_text):
     prompt = f"""
 Analyze the following resume as an expert Career Advisor specializing in Space, Research, AI, Data Science, and Engineering careers.
 
