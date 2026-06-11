@@ -2,6 +2,9 @@
 
 AstraPath AI is an advanced, agentic career navigation platform tailored specifically for individuals aspiring to secure careers, research roles, and internships at premier space and defense organizations like **ISRO, DRDO, and NASA**. By analyzing applicant resumes and parsing complex institutional requirements, the system acts as an autonomous career strategist.
 
+## 🌐 Live Demo
+https://astrapath-ai-5z99yjk5fguavyjtycm8zb.streamlit.app/
+
 ## 🚀 Key Features
 
 * **AI Resume Parser:** Extracts existing skills, technologies, and projects from uploaded documents using advanced NLP.
